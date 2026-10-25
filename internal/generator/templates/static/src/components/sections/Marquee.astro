@@ -1,0 +1,9 @@
+---
+const { data } = Astro.props;
+const words = [...data.items, ...data.items, ...data.items];
+---
+<section id="marquee" class="overflow-hidden border-y border-primary/15 py-5">
+  <div class="marquee flex w-max items-center gap-12 whitespace-nowrap font-heading text-2xl uppercase tracking-wide text-primary md:text-4xl">
+    {words.map((w) => <span class="flex items-center gap-12">{w}<span class="text-secondary">✦</span></span>)}
+  </div>
+</section>

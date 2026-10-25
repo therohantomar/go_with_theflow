@@ -9,11 +9,11 @@ const { data, layout = "cards" } = Astro.props;
     {layout === "cards" && (
       <div data-reveal class="grid gap-6 md:grid-cols-3">
         {data.items.map((t) => (
-          <blockquote class="rounded-2xl border border-primary/10 p-6">
-            <p class="text-neutral-700">“{t.quote}”</p>
+          <blockquote class="rounded-card border border-primary/10 p-6">
+            <p class="text-muted">“{t.quote}”</p>
             <footer class="mt-6 flex items-center gap-3">
               <Img section="testimonials" file={t.image} class="h-10 w-10 rounded-full" />
-              <div><p class="text-sm font-semibold">{t.name}</p><p class="text-xs text-neutral-500">{t.role}</p></div>
+              <div><p class="text-sm font-semibold">{t.name}</p><p class="text-xs text-muted">{t.role}</p></div>
             </footer>
           </blockquote>
         ))}
@@ -23,11 +23,11 @@ const { data, layout = "cards" } = Astro.props;
       <div data-reveal>
         <Carousel>
           {data.items.map((t) => (
-            <blockquote class="w-full shrink-0 snap-start rounded-2xl bg-tertiary p-8 md:w-[calc(50%-12px)]">
-              <p class="text-lg text-neutral-700">“{t.quote}”</p>
+            <blockquote class="w-full shrink-0 snap-start rounded-card bg-tertiary p-8 md:w-[calc(50%-12px)]">
+              <p class="text-lg text-muted">“{t.quote}”</p>
               <footer class="mt-6 flex items-center gap-3">
                 <Img section="testimonials" file={t.image} class="h-10 w-10 rounded-full" />
-                <div><p class="text-sm font-semibold">{t.name}</p><p class="text-xs text-neutral-500">{t.role}</p></div>
+                <div><p class="text-sm font-semibold">{t.name}</p><p class="text-xs text-muted">{t.role}</p></div>
               </footer>
             </blockquote>
           ))}

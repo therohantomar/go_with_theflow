@@ -25,6 +25,17 @@ type Industry struct {
 	Tagline string   `json:"tagline"`
 	Sub     []string `json:"sub"`
 	Palette []string `json:"palette"` // primary, secondary, tertiary
+	Styles  []string `json:"styles"`  // recommended first
+}
+
+type Style struct {
+	ID       string   `json:"id"`
+	Name     string   `json:"name"`
+	Desc     string   `json:"desc"`
+	Hero     string   `json:"hero"`
+	Sections []string `json:"sections"`
+	Palette  []string `json:"palette"`
+	Fonts    []string `json:"fonts"` // heading, body
 }
 
 type Font struct {
@@ -37,6 +48,7 @@ type Presets struct {
 	Industries []Industry `json:"industries"`
 	Sections   []Section  `json:"sections"`
 	Fonts      []Font     `json:"fonts"`
+	Styles     []Style    `json:"styles"`
 }
 
 func Load() (*Presets, error) {

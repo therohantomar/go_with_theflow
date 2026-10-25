@@ -9,7 +9,7 @@ const { data, layout = "grid" } = Astro.props;
     {layout === "grid" && (
       <div data-reveal class="grid grid-cols-2 gap-4 md:grid-cols-3">
         {data.items.map((g) => (
-          <figure><Img section="gallery" file={g.image} alt={g.caption} class="aspect-square w-full rounded-xl" /><figcaption class="mt-2 text-sm text-neutral-600">{g.caption}</figcaption></figure>
+          <figure><Img section="gallery" file={g.image} alt={g.caption} class="aspect-square w-full rounded-card" /><figcaption class="mt-2 text-sm text-muted">{g.caption}</figcaption></figure>
         ))}
       </div>
     )}
@@ -17,7 +17,7 @@ const { data, layout = "grid" } = Astro.props;
       <div data-reveal>
         <Carousel>
           {data.items.map((g) => (
-            <figure class="w-full shrink-0 snap-start md:w-[calc(33.333%-16px)]"><Img section="gallery" file={g.image} alt={g.caption} class="aspect-[4/3] w-full rounded-xl" /><figcaption class="mt-2 text-sm text-neutral-600">{g.caption}</figcaption></figure>
+            <figure class="w-full shrink-0 snap-start md:w-[calc(33.333%-16px)]"><Img section="gallery" file={g.image} alt={g.caption} class="aspect-[4/3] w-full rounded-card" /><figcaption class="mt-2 text-sm text-muted">{g.caption}</figcaption></figure>
           ))}
         </Carousel>
       </div>

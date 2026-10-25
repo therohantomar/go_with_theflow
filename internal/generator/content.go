@@ -29,7 +29,7 @@ func siteFor(c *model.Config) kv {
 			nav = append(nav, kv{"id": s.ID, "label": s.ID})
 		}
 	}
-	return kv{"name": c.Name, "industry": c.IndustryName, "ctas": ctas, "nav": nav}
+	return kv{"name": c.Name, "industry": c.IndustryName, "style": c.Style, "ctas": ctas, "nav": nav}
 }
 
 // contentFor returns placeholder copy per section. Images are left blank ("") —
@@ -44,6 +44,7 @@ func contentFor(c *model.Config) map[string]any {
 		return r
 	}
 	m := map[string]any{
+		"marquee": kv{"items": []string{"Quality", "Design", "Craft", "Delivery"}},
 		"products": kv{"title": "Our products", "subtitle": "The right format for every need.",
 			"items": items(3, func(i int) kv { return kv{"tag": "Category", "title": fmt.Sprintf("Product %d", i), "text": "Short product description.", "image": ""} })},
 		"process": kv{"title": "How we work",
@@ -54,7 +55,7 @@ func contentFor(c *model.Config) map[string]any {
 			"whatsapp": "919999999999", "styles": []string{"Option A", "Option B"}, "boards": []string{"Standard", "Premium"},
 			"minQty": 100, "maxQty": 10000, "step": 100},
 		"hero": kv{"eyebrow": c.SubIndustry, "headline": c.Tagline,
-			"subheadline": fmt.Sprintf("%s is your partner in %s. Replace this copy in src/content/hero.json.", c.Name, ind), "image": ""},
+			"subheadline": fmt.Sprintf("%s is your partner in %s. Replace this copy in src/content/hero.json.", c.Name, ind), "image": "", "points": []string{"Quality you can see", "Fast turnaround", "Support that listens"}},
 		"about": kv{"title": "About " + c.Name, "text": fmt.Sprintf("Tell your %s story here.", ind), "image": "",
 			"stats": items(3, func(i int) kv { return kv{"value": fmt.Sprintf("%d00+", i), "label": fmt.Sprintf("Metric %d", i)} })},
 		"features": kv{"title": "Why choose us", "subtitle": "What sets " + c.Name + " apart.", "image": "",
@@ -69,8 +70,13 @@ func contentFor(c *model.Config) map[string]any {
 			"items": items(4, func(i int) kv { return kv{"q": fmt.Sprintf("Question %d?", i), "a": "Answer goes here."} })},
 		"contact": kv{"title": "Get in touch", "text": "We'd love to hear from you.", "email": "hello@example.com", "phone": "+00 000 000 000", "address": "Your address", "image": ""},
 	}
-	if c.Industry == "packaging" {
+	switch c.Industry {
+	case "packaging":
 		packagingOverrides(c, m)
+	case "food-packaging":
+		foodPackagingOverrides(c, m)
+	case "fashion":
+		fashionOverrides(c, m)
 	}
 	return m
 }
@@ -78,7 +84,7 @@ func contentFor(c *model.Config) map[string]any {
 // packagingOverrides swaps the generic copy for box / packaging copy.
 func packagingOverrides(c *model.Config, m map[string]any) {
 	m["hero"] = kv{"eyebrow": "Design · Printing · Packaging", "headline": c.Tagline,
-		"subheadline": "Corrugated boxes, printed cartons and custom packaging, made to your size, board and brand.", "image": ""}
+		"subheadline": "Corrugated boxes, printed cartons and custom packaging, made to your size, board and brand.", "image": "", "points": []string{"Custom sizes", "In-house printing", "Bulk and sample orders"}}
 	m["about"] = kv{"title": "A packaging partner you can build on", "image": "",
 		"text": "Tell your story here: when you started, who runs the business, and why packaging is more than protection for your customers.",
 		"stats": []kv{{"value": "20+", "label": "Years in business"}, {"value": "3", "label": "Manufacturing units"}, {"value": "50k+", "label": "Boxes a month"}}}
@@ -110,4 +116,43 @@ func packagingOverrides(c *model.Config, m map[string]any) {
 		"boards": []string{"3-ply", "5-ply", "7-ply", "Duplex"}, "minQty": 100, "maxQty": 10000, "step": 100}
 	m["contact"] = kv{"title": "Ready to pack your next big idea?", "text": "Tell us your product, size and quantity and we will reply with the right packaging solution.",
 		"email": "hello@example.com", "phone": "+00 000 000 000", "address": "Unit address", "image": ""}
+}
+
+func foodPackagingOverrides(c *model.Config, m map[string]any) {
+	m["hero"] = kv{"eyebrow": "Food packaging & disposables", "headline": c.Tagline, "image": "",
+		"subheadline": "Containers, cups, tableware and bags for restaurants, cloud kitchens and food brands, in food-safe materials.",
+		"points": []string{"Food-safe materials", "Custom printing", "Bulk supply"}}
+	m["marquee"] = kv{"items": []string{"Food safe", "Leak resistant", "Recyclable options", "Custom branded"}}
+	m["products"] = kv{"title": "Packaging for every menu", "subtitle": "Product catalogue",
+		"items": []kv{
+			{"tag": "Containers", "title": "Food Containers", "text": "Round and rectangular containers with secure lids.", "image": ""},
+			{"tag": "Hot & cold", "title": "Paper Cups", "text": "Single and double wall cups for beverages and soups.", "image": ""},
+			{"tag": "Tableware", "title": "Plates & Bowls", "text": "Disposable plates and bowls in paper and moulded fibre.", "image": ""},
+			{"tag": "Takeaway", "title": "Bags & Wraps", "text": "Paper bags, wraps and sleeves for takeaway.", "image": ""},
+			{"tag": "Bakery", "title": "Clamshells & Trays", "text": "Clear and paper clamshells for bakery and desserts.", "image": ""},
+			{"tag": "Cutlery", "title": "Cutlery & Straws", "text": "Spoons, forks and straws in wood and paper.", "image": ""}}}
+	m["industries"] = kv{"title": "Who we supply", "items": []kv{
+		{"icon": "🍔", "name": "Restaurants & QSR"}, {"icon": "☁️", "name": "Cloud kitchens"}, {"icon": "🥐", "name": "Bakeries & cafes"},
+		{"icon": "🍽️", "name": "Caterers"}, {"icon": "🛍️", "name": "Retail & grocery"}, {"icon": "🚚", "name": "Delivery brands"}}}
+	m["quote"] = kv{"title": "Request a bulk quote", "text": "Tell us what you serve and how much you need.",
+		"whatsapp": "919999999999", "styles": []string{"Container", "Cup", "Plate", "Bag", "Cutlery"},
+		"boards": []string{"Paper", "PET", "Bagasse", "PP"}, "minQty": 500, "maxQty": 50000, "step": 500}
+}
+
+func fashionOverrides(c *model.Config, m map[string]any) {
+	m["hero"] = kv{"eyebrow": "New season", "headline": c.Tagline, "image": "",
+		"subheadline": "The new collection is here. Designed to be worn hard and styled your way.",
+		"points": []string{"Free shipping", "Easy returns", "New drops weekly"}}
+	m["marquee"] = kv{"items": []string{"New season", "Free shipping", "Limited drops", "Made to move"}}
+	m["products"] = kv{"title": "Shop the collections", "subtitle": "Featured",
+		"items": []kv{
+			{"tag": "Men", "title": "Men", "text": "Essentials and statement pieces.", "image": ""},
+			{"tag": "Women", "title": "Women", "text": "Everyday staples and seasonal edits.", "image": ""},
+			{"tag": "Kids", "title": "Kids", "text": "Comfort that keeps up with them.", "image": ""},
+			{"tag": "Sport", "title": "Performance", "text": "Built for training and movement.", "image": ""},
+			{"tag": "Accessories", "title": "Accessories", "text": "Bags, caps and finishing touches.", "image": ""},
+			{"tag": "Sale", "title": "Last chance", "text": "Final reductions on past seasons.", "image": ""}}}
+	m["gallery"] = kv{"title": "Lookbook", "items": []kv{
+		{"caption": "Look 01", "image": ""}, {"caption": "Look 02", "image": ""}, {"caption": "Look 03", "image": ""},
+		{"caption": "Look 04", "image": ""}, {"caption": "Look 05", "image": ""}, {"caption": "Look 06", "image": ""}}}
 }

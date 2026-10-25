@@ -19,6 +19,7 @@ type Config struct {
 	IndustryName   string    `json:"industryName"`
 	Tagline        string    `json:"tagline"`
 	SubIndustry    string    `json:"subIndustry"`
+	Style          string    `json:"style"`
 	Sections       []Section `json:"sections"`
 	Colors         struct {
 		Primary   string `json:"primary"`

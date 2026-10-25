@@ -18,6 +18,15 @@ var (
 	slugRe = regexp.MustCompile(`[^a-z0-9]+`)
 )
 
+func has(list []string, v string) bool {
+	for _, x := range list {
+		if x == v {
+			return true
+		}
+	}
+	return false
+}
+
 func slug(s string) string {
 	return strings.Trim(slugRe.ReplaceAllString(strings.ToLower(s), "-"), "-")
 }
@@ -76,10 +85,25 @@ func RunWizard() (*model.Config, error) {
 		return nil, err
 	}
 
+	// style
+	byID := map[string]presets.Style{}
+	for _, st := range p.Styles {
+		byID[st.ID] = st
+	}
+	var styleOpts []huh.Option[string]
+	for _, id := range ind.Styles {
+		styleOpts = append(styleOpts, huh.NewOption(byID[id].Name+" - "+byID[id].Desc, id))
+	}
+	c.Style = ind.Styles[0]
+	if err := huh.NewSelect[string]().Title("Template style").Options(styleOpts...).Value(&c.Style).Run(); err != nil {
+		return nil, err
+	}
+	st := byID[c.Style]
+
 	// 3. sections
 	var secOpts []huh.Option[string]
 	for _, s := range p.Sections {
-		secOpts = append(secOpts, huh.NewOption(s.Name, s.ID).Selected(s.ID == "hero"))
+		secOpts = append(secOpts, huh.NewOption(s.Name, s.ID).Selected(s.ID == "hero" || has(st.Sections, s.ID)))
 	}
 	var picked []string
 	if err := huh.NewMultiSelect[string]().Title("Which sections? (space to toggle)").Options(secOpts...).Value(&picked).
@@ -109,6 +133,9 @@ func RunWizard() (*model.Config, error) {
 			opts = append(opts, huh.NewOption(l.Name, l.ID))
 		}
 		layouts[i] = s.Layouts[0].ID
+		if s.ID == "hero" && st.Hero != "" {
+			layouts[i] = st.Hero
+		}
 		fields = append(fields, huh.NewSelect[string]().Title(s.Name+" layout").Options(opts...).Value(&layouts[i]))
 	}
 	if err := huh.NewForm(huh.NewGroup(fields...)).Run(); err != nil {
@@ -119,7 +146,11 @@ func RunWizard() (*model.Config, error) {
 	}
 
 	// 5. colours
-	c.Colors.Primary, c.Colors.Secondary, c.Colors.Tertiary = ind.Palette[0], ind.Palette[1], ind.Palette[2]
+	pal := ind.Palette
+	if len(st.Palette) == 3 {
+		pal = st.Palette
+	}
+	c.Colors.Primary, c.Colors.Secondary, c.Colors.Tertiary = pal[0], pal[1], pal[2]
 	if err := huh.NewForm(huh.NewGroup(
 		huh.NewInput().Title("Primary colour").Value(&c.Colors.Primary).Validate(hexCheck),
 		huh.NewInput().Title("Secondary colour").Value(&c.Colors.Secondary).Validate(hexCheck),
@@ -133,7 +164,7 @@ func RunWizard() (*model.Config, error) {
 	for _, f := range p.Fonts {
 		fontOpts = append(fontOpts, huh.NewOption(f.Name, f.ID))
 	}
-	headID, bodyID := "playfair-display", "inter"
+	headID, bodyID := st.Fonts[0], st.Fonts[1]
 	if err := huh.NewForm(huh.NewGroup(
 		huh.NewSelect[string]().Title("Primary font (headings)").Options(fontOpts...).Value(&headID),
 		huh.NewSelect[string]().Title("Secondary font (paragraphs)").Options(fontOpts...).Value(&bodyID),

@@ -52,7 +52,9 @@ func Generate(c *model.Config, parent string) (string, error) {
 		*model.Config
 		Sections []sec
 		FontIDs  []string
-	}{c, secs, uniqueFonts(c)}
+		T        tokens
+		OnPrimary, OnSecondary string
+	}{c, secs, uniqueFonts(c), tokensFor(c.Style), onColor(c.Colors.Primary), onColor(c.Colors.Secondary)}
 	// shadow embedded Config.Sections with the richer list
 	files := map[string]string{
 		"package.json":          packageJSON,
@@ -172,15 +174,40 @@ const globalCSS = `@import "tailwindcss";
   --color-primary: {{.Colors.Primary}};
   --color-secondary: {{.Colors.Secondary}};
   --color-tertiary: {{.Colors.Tertiary}};
+  --color-on-primary: {{.OnPrimary}};
+  --color-on-secondary: {{.OnSecondary}};
+  --color-surface: {{.T.Surface}};
+  --color-ink: {{.T.Ink}};
+  --color-muted: {{.T.Muted}};
+  --radius-card: {{.T.CardR}};
+  --radius-field: {{.T.FieldR}};
+  --radius-btn: {{.T.BtnR}};
   --font-heading: "{{.Fonts.Heading.Name}}", {{.Fonts.Heading.Fallback}};
   --font-body: "{{.Fonts.Body.Name}}", {{.Fonts.Body.Fallback}};
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  body { @apply bg-white font-body text-neutral-800; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  img { max-width: 100%; }
+  body { @apply bg-surface font-body text-ink; overflow-x: clip; }
   h1, h2, h3, h4 { @apply font-heading text-primary; }
 }
+
+/* Template style: {{.Style}}. Unlayered on purpose so it wins over utility classes. */
+h1, h2, h3 {
+  font-weight: {{.T.HWeight}};
+  letter-spacing: {{.T.HTrack}};
+  line-height: {{.T.HLead}};
+  text-transform: {{.T.HTransform}};
+}
+h1 { font-size: {{.T.H1}}; }
+h2 { font-size: {{.T.H2}}; }
+section:not(#hero):not(#marquee) { padding-block: min({{.T.SectionY}}, 4rem); }
+@media (min-width: 768px) { section:not(#hero):not(#marquee) { padding-block: {{.T.SectionY}}; } }
+input, select, textarea { background: var(--color-surface); color: var(--color-ink); }
+
+.marquee { animation: marquee 30s linear infinite; }
+@keyframes marquee { to { transform: translateX(-33.333%); } }
 
 /* revealed by motion / anime.js on load or scroll */
 [data-reveal], [data-hero-item] { opacity: 0; }

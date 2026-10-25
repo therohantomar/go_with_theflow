@@ -14,6 +14,11 @@
     "#3b2a1a",
     "#c8872e",
     "#f6efe4"
+   ],
+   "styles": [
+    "industrial",
+    "soft",
+    "bold"
    ]
   },
   {
@@ -30,6 +35,10 @@
     "#1e3a5f",
     "#c9a227",
     "#f4efe6"
+   ],
+   "styles": [
+    "editorial",
+    "soft"
    ]
   },
   {
@@ -46,6 +55,10 @@
     "#0f766e",
     "#2563eb",
     "#ecfeff"
+   ],
+   "styles": [
+    "industrial",
+    "soft"
    ]
   },
   {
@@ -62,6 +75,10 @@
     "#4f46e5",
     "#06b6d4",
     "#eef2ff"
+   ],
+   "styles": [
+    "creative",
+    "soft"
    ]
   },
   {
@@ -78,6 +95,10 @@
     "#064e3b",
     "#10b981",
     "#ecfdf5"
+   ],
+   "styles": [
+    "industrial",
+    "creative"
    ]
   },
   {
@@ -94,6 +115,10 @@
     "#0369a1",
     "#14b8a6",
     "#f0f9ff"
+   ],
+   "styles": [
+    "soft",
+    "industrial"
    ]
   },
   {
@@ -110,6 +135,10 @@
     "#111827",
     "#f43f5e",
     "#fef2f2"
+   ],
+   "styles": [
+    "creative",
+    "bold"
    ]
   },
   {
@@ -126,6 +155,10 @@
     "#7c2d12",
     "#f97316",
     "#fff7ed"
+   ],
+   "styles": [
+    "bold",
+    "editorial"
    ]
   },
   {
@@ -142,6 +175,70 @@
     "#1e40af",
     "#f59e0b",
     "#eff6ff"
+   ],
+   "styles": [
+    "soft",
+    "creative"
+   ]
+  },
+  {
+   "id": "fashion",
+   "name": "Fashion & Apparel",
+   "tagline": "Wear what moves you.",
+   "sub": [
+    "Streetwear",
+    "Sportswear",
+    "Luxury Fashion",
+    "Online Fashion Store"
+   ],
+   "palette": [
+    "#111111",
+    "#ff4d00",
+    "#f2f2f2"
+   ],
+   "styles": [
+    "editorial",
+    "bold"
+   ]
+  },
+  {
+   "id": "food-packaging",
+   "name": "Food Packaging & Disposables",
+   "tagline": "Packaging that keeps food fresh and brands remembered.",
+   "sub": [
+    "Food Containers",
+    "Paper Cups & Bags",
+    "Disposable Tableware",
+    "Foodservice Packaging"
+   ],
+   "palette": [
+    "#14532d",
+    "#f59e0b",
+    "#f5f7f2"
+   ],
+   "styles": [
+    "industrial",
+    "soft"
+   ]
+  },
+  {
+   "id": "creative",
+   "name": "Creative Studio & Portfolio",
+   "tagline": "Work worth looking at.",
+   "sub": [
+    "Design Studio",
+    "Photographer",
+    "Architecture",
+    "Freelancer"
+   ],
+   "palette": [
+    "#f4f4f5",
+    "#c6ff3d",
+    "#16161a"
+   ],
+   "styles": [
+    "creative",
+    "editorial"
    ]
   }
  ],
@@ -161,6 +258,28 @@
     {
      "id": "background",
      "name": "Full background image"
+    },
+    {
+     "id": "giant",
+     "name": "Giant headline + wide image (bold / dark)"
+    },
+    {
+     "id": "editorial",
+     "name": "Editorial – tall image + small text"
+    },
+    {
+     "id": "banner",
+     "name": "Banner – solid colour + key points"
+    }
+   ]
+  },
+  {
+   "id": "marquee",
+   "name": "Marquee strip",
+   "layouts": [
+    {
+     "id": "ticker",
+     "name": "Scrolling ticker"
     }
    ]
   },
@@ -345,6 +464,112 @@
    "id": "lora",
    "name": "Lora",
    "fallback": "serif"
+  },
+  {
+   "id": "oswald",
+   "name": "Oswald",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "cormorant-garamond",
+   "name": "Cormorant Garamond",
+   "fallback": "serif"
+  },
+  {
+   "id": "jost",
+   "name": "Jost",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "archivo",
+   "name": "Archivo",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "syne",
+   "name": "Syne",
+   "fallback": "sans-serif"
+  }
+ ],
+ "styles": [
+  {
+   "id": "bold",
+   "name": "Bold Sport",
+   "desc": "huge uppercase type, hard edges, high contrast (Nike / Adidas / Myntra)",
+   "hero": "giant",
+   "sections": [
+    "marquee"
+   ],
+   "palette": [
+    "#111111",
+    "#ff4d00",
+    "#f2f2f2"
+   ],
+   "fonts": [
+    "oswald",
+    "inter"
+   ]
+  },
+  {
+   "id": "editorial",
+   "name": "Editorial Minimal",
+   "desc": "airy, hairline details, lookbook imagery (Zara / Uniqlo)",
+   "hero": "editorial",
+   "sections": [],
+   "palette": [
+    "#1a1a1a",
+    "#8a7968",
+    "#f3f0eb"
+   ],
+   "fonts": [
+    "cormorant-garamond",
+    "jost"
+   ]
+  },
+  {
+   "id": "industrial",
+   "name": "Industrial Catalog",
+   "desc": "structured, spec-driven, corporate (Huhtamaki / Dart / Pactiv)",
+   "hero": "banner",
+   "sections": [
+    "products",
+    "industries"
+   ],
+   "palette": [],
+   "fonts": [
+    "archivo",
+    "inter"
+   ]
+  },
+  {
+   "id": "creative",
+   "name": "Creative Dark",
+   "desc": "dark, oversized type, glow accents (Awwwards / Godly / Land-book)",
+   "hero": "giant",
+   "sections": [
+    "marquee"
+   ],
+   "palette": [
+    "#f4f4f5",
+    "#c6ff3d",
+    "#16161a"
+   ],
+   "fonts": [
+    "syne",
+    "dm-sans"
+   ]
+  },
+  {
+   "id": "soft",
+   "name": "Soft Classic",
+   "desc": "rounded cards, friendly and balanced",
+   "hero": "split",
+   "sections": [],
+   "palette": [],
+   "fonts": [
+    "playfair-display",
+    "inter"
+   ]
   }
  ]
 }

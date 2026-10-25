@@ -4,13 +4,13 @@ const { data, layout = "image-left" } = Astro.props;
 ---
 <section id="about" class="bg-tertiary px-6 py-20">
   <div data-reveal class="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
-    <Img section="about" file={data.image} class={`aspect-[4/3] w-full rounded-2xl ${layout === "image-right" ? "md:order-2" : ""}`} />
+    <Img section="about" file={data.image} class={`aspect-[4/3] w-full rounded-card ${layout === "image-right" ? "md:order-2" : ""}`} />
     <div>
       <h2 class="text-3xl font-bold md:text-4xl">{data.title}</h2>
-      <p class="mt-4 text-neutral-600">{data.text}</p>
+      <p class="mt-4 text-muted">{data.text}</p>
       <dl class="mt-8 grid grid-cols-3 gap-4">
         {data.stats.map((s) => (
-          <div><dt class="text-2xl font-bold text-secondary">{s.value}</dt><dd class="text-sm text-neutral-600">{s.label}</dd></div>
+          <div><dt class="text-2xl font-bold text-secondary">{s.value}</dt><dd class="text-sm text-muted">{s.label}</dd></div>
         ))}
       </dl>
     </div>

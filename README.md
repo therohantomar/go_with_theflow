@@ -8,12 +8,27 @@ A Go CLI that asks a few questions and generates a complete **Astro** landing pa
 
 1. Package manager: npm, pnpm, yarn or bun
 2. Project name
-3. Industry and sub-industry (Packaging & Boxes, Real Estate, Pharmaceutical, SaaS, Fintech, Healthcare, Agency, E-commerce, Education)
-4. Sections: hero, about, features, gallery, testimonials, FAQ, products, process, industries served, instant quote (WhatsApp), contact
-5. A layout for each chosen section (carousel, grid, header pointers with image, and more)
-6. Colors: primary, secondary, tertiary
-7. Fonts: heading font and paragraph font
-8. Number of CTAs and their labels
+3. Industry and sub-industry (Packaging & Boxes, Food Packaging, Fashion & Apparel, Creative Studio, Real Estate, Pharmaceutical, SaaS, Fintech, Healthcare, Agency, E-commerce, Education)
+4. Template style, with the best fit for the industry first (see below)
+5. Sections: marquee strip, hero, about, features, gallery, testimonials, FAQ, products, process, industries served, instant quote (WhatsApp), contact
+6. A layout for each chosen section (carousel, grid, header pointers with image, and more)
+7. Colors: primary, secondary, tertiary
+8. Fonts: heading font and paragraph font
+9. Number of CTAs and their labels
+
+## Template styles
+
+Each style changes type, shape, spacing, header, hero layout, default colors and fonts, so industries no longer look alike.
+
+| Style | Look | Inspired by |
+|---|---|---|
+| Bold Sport | huge uppercase type, square corners, marquee strip, high contrast | Nike, Adidas, Myntra |
+| Editorial Minimal | airy, hairline details, centered header, tall lookbook hero | Zara, Uniqlo |
+| Industrial Catalog | solid color banner hero with key points, structured product catalogue | Huhtamaki, Dart, Pactiv, Genpak, Sabert, Novolex |
+| Creative Dark | dark theme, oversized type, glow accents, pill buttons | Awwwards, Godly, Land-book, Dribbble |
+| Soft Classic | rounded cards, friendly and balanced | - |
+
+These are original designs that borrow general patterns from the reference sites. Nothing is copied.
 
 ## What it generates
 
