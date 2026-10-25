@@ -1,0 +1,22 @@
+---
+import Img from "../Img.astro";
+const { data, layout = "simple" } = Astro.props;
+---
+<section id="contact" class="px-6 py-20">
+  <div data-reveal class={`mx-auto grid max-w-6xl gap-12 ${layout === "split" ? "items-center md:grid-cols-2" : "md:grid-cols-2"}`}>
+    {layout === "split" && <Img section="contact" file={data.image} class="aspect-[4/3] w-full rounded-2xl" />}
+    <div>
+      <h2 class="text-3xl font-bold md:text-4xl">{data.title}</h2>
+      <p class="mt-3 text-neutral-600">{data.text}</p>
+      {layout === "simple" && (
+        <ul class="mt-6 space-y-1 text-sm text-neutral-700"><li>{data.email}</li><li>{data.phone}</li><li>{data.address}</li></ul>
+      )}
+    </div>
+    <form class="space-y-4" onsubmit="return false">
+      <input class="w-full rounded-lg border border-primary/20 px-4 py-3" placeholder="Name" />
+      <input class="w-full rounded-lg border border-primary/20 px-4 py-3" type="email" placeholder="Email" />
+      <textarea class="w-full rounded-lg border border-primary/20 px-4 py-3" rows="4" placeholder="Message"></textarea>
+      <button class="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white">Send</button>
+    </form>
+  </div>
+</section>

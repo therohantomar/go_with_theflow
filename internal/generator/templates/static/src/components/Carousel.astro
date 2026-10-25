@@ -1,0 +1,18 @@
+---
+---
+<div data-carousel class="relative">
+  <div data-track class="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none]">
+    <slot />
+  </div>
+  <div class="mt-4 flex justify-end gap-2">
+    <button data-prev aria-label="Previous" class="rounded-full border border-primary/30 px-4 py-2 text-primary transition hover:bg-primary hover:text-white">←</button>
+    <button data-next aria-label="Next" class="rounded-full border border-primary/30 px-4 py-2 text-primary transition hover:bg-primary hover:text-white">→</button>
+  </div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((el) => {
+    const track = el.querySelector<HTMLElement>("[data-track]")!;
+    el.querySelector("[data-prev]")?.addEventListener("click", () => track.scrollBy({ left: -track.clientWidth * 0.8 }));
+    el.querySelector("[data-next]")?.addEventListener("click", () => track.scrollBy({ left: track.clientWidth * 0.8 }));
+  });
+</script>

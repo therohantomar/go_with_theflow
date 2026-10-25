@@ -1,0 +1,13 @@
+---
+import Button from "../Button.astro";
+import site from "../../content/site.json";
+---
+<header class="sticky top-0 z-20 border-b border-primary/10 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="#" class="font-heading text-xl font-bold text-primary">{site.name}</a>
+    <nav class="hidden gap-6 text-sm capitalize md:flex">
+      {site.nav.map((n) => <a href={`#${n.id}`} class="hover:text-secondary">{n.label}</a>)}
+    </nav>
+    {site.ctas[0] && <Button {...site.ctas[0]} />}
+  </div>
+</header>

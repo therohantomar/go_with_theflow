@@ -1,0 +1,30 @@
+---
+const { data, layout = "steps" } = Astro.props;
+---
+<section id="process" class="bg-tertiary px-6 py-20">
+  <div class="mx-auto max-w-6xl">
+    <h2 data-reveal class="mb-12 text-3xl font-bold md:text-4xl">{data.title}</h2>
+    {layout === "steps" && (
+      <ol data-reveal class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {data.items.map((s, i) => (
+          <li>
+            <span class="font-heading text-5xl font-bold text-secondary/60">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="mt-2 text-lg font-semibold">{s.title}</h3>
+            <p class="mt-1 text-sm text-neutral-600">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    )}
+    {layout === "timeline" && (
+      <ol data-reveal class="relative ml-4 space-y-10 border-l-2 border-secondary/40 pl-8">
+        {data.items.map((s, i) => (
+          <li class="relative">
+            <span class="absolute -left-[46px] flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-sm font-bold text-white">{i + 1}</span>
+            <h3 class="text-lg font-semibold">{s.title}</h3>
+            <p class="mt-1 text-sm text-neutral-600">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    )}
+  </div>
+</section>

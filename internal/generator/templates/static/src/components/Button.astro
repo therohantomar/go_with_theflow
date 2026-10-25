@@ -1,0 +1,7 @@
+---
+const { label, href = "#", variant = "primary" } = Astro.props;
+const styles = variant === "primary"
+  ? "bg-primary text-white hover:opacity-90"
+  : "border border-primary text-primary hover:bg-primary hover:text-white";
+---
+<a href={href} class={`inline-block rounded-full px-6 py-3 text-sm font-semibold transition ${styles}`}>{label}</a>

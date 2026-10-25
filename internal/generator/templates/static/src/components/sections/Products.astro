@@ -1,0 +1,46 @@
+---
+import Img from "../Img.astro";
+import Carousel from "../Carousel.astro";
+import site from "../../content/site.json";
+const { data, layout = "grid" } = Astro.props;
+const href = site.ctas[0]?.href ?? "#";
+---
+<section id="products" class="px-6 py-20">
+  <div class="mx-auto max-w-6xl">
+    <div data-reveal class="mb-12 max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-secondary">{data.subtitle}</p>
+      <h2 class="mt-2 text-3xl font-bold md:text-4xl">{data.title}</h2>
+    </div>
+    {layout === "grid" && (
+      <div data-reveal class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {data.items.map((p) => (
+          <article class="overflow-hidden rounded-2xl border border-primary/10">
+            <Img section="products" file={p.image} alt={p.title} class="aspect-[4/3] w-full" />
+            <div class="p-6">
+              <span class="text-xs font-semibold uppercase tracking-wider text-secondary">{p.tag}</span>
+              <h3 class="mt-1 text-lg font-semibold">{p.title}</h3>
+              <p class="mt-2 text-sm text-neutral-600">{p.text}</p>
+              <a href={href} class="mt-4 inline-block text-sm font-semibold text-primary hover:text-secondary">Request a quote →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+    {layout === "carousel" && (
+      <div data-reveal>
+        <Carousel>
+          {data.items.map((p) => (
+            <article class="w-full shrink-0 snap-start overflow-hidden rounded-2xl border border-primary/10 md:w-[calc(33.333%-16px)]">
+              <Img section="products" file={p.image} alt={p.title} class="aspect-[4/3] w-full" />
+              <div class="p-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-secondary">{p.tag}</span>
+                <h3 class="mt-1 text-lg font-semibold">{p.title}</h3>
+                <p class="mt-2 text-sm text-neutral-600">{p.text}</p>
+              </div>
+            </article>
+          ))}
+        </Carousel>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,350 @@
+{
+ "industries": [
+  {
+   "id": "packaging",
+   "name": "Packaging & Boxes",
+   "tagline": "Boxes that protect. Packaging that sells.",
+   "sub": [
+    "Corrugated Boxes",
+    "Printed Cartons",
+    "Mailer & Gift Boxes",
+    "Custom Packaging"
+   ],
+   "palette": [
+    "#3b2a1a",
+    "#c8872e",
+    "#f6efe4"
+   ]
+  },
+  {
+   "id": "real-estate",
+   "name": "Real Estate",
+   "tagline": "Find the place that fits your life.",
+   "sub": [
+    "Residential Sales",
+    "Property Management",
+    "Commercial",
+    "PropTech"
+   ],
+   "palette": [
+    "#1e3a5f",
+    "#c9a227",
+    "#f4efe6"
+   ]
+  },
+  {
+   "id": "pharmaceutical",
+   "name": "Pharmaceutical",
+   "tagline": "Science you can trust, care you can feel.",
+   "sub": [
+    "Generic Drugs",
+    "Biotech",
+    "Pharmacy Chain",
+    "Clinical Research"
+   ],
+   "palette": [
+    "#0f766e",
+    "#2563eb",
+    "#ecfeff"
+   ]
+  },
+  {
+   "id": "saas",
+   "name": "SaaS",
+   "tagline": "Software that gets out of your way.",
+   "sub": [
+    "Productivity",
+    "Developer Tools",
+    "Analytics",
+    "CRM"
+   ],
+   "palette": [
+    "#4f46e5",
+    "#06b6d4",
+    "#eef2ff"
+   ]
+  },
+  {
+   "id": "fintech",
+   "name": "Fintech",
+   "tagline": "Money, made simple and secure.",
+   "sub": [
+    "Payments",
+    "Lending",
+    "Investing",
+    "Banking"
+   ],
+   "palette": [
+    "#064e3b",
+    "#10b981",
+    "#ecfdf5"
+   ]
+  },
+  {
+   "id": "healthcare",
+   "name": "Healthcare",
+   "tagline": "Care that puts people first.",
+   "sub": [
+    "Clinic",
+    "Hospital",
+    "Telehealth",
+    "Wellness"
+   ],
+   "palette": [
+    "#0369a1",
+    "#14b8a6",
+    "#f0f9ff"
+   ]
+  },
+  {
+   "id": "agency",
+   "name": "Agency",
+   "tagline": "Ideas that move brands forward.",
+   "sub": [
+    "Branding",
+    "Marketing",
+    "Web Design",
+    "Creative Studio"
+   ],
+   "palette": [
+    "#111827",
+    "#f43f5e",
+    "#fef2f2"
+   ]
+  },
+  {
+   "id": "ecommerce",
+   "name": "E-commerce",
+   "tagline": "Everything you love, delivered.",
+   "sub": [
+    "Fashion",
+    "Electronics",
+    "Home & Living",
+    "Marketplace"
+   ],
+   "palette": [
+    "#7c2d12",
+    "#f97316",
+    "#fff7ed"
+   ]
+  },
+  {
+   "id": "education",
+   "name": "Education",
+   "tagline": "Learn without limits.",
+   "sub": [
+    "School",
+    "University",
+    "Online Courses",
+    "Tutoring"
+   ],
+   "palette": [
+    "#1e40af",
+    "#f59e0b",
+    "#eff6ff"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "id": "hero",
+   "name": "Hero",
+   "layouts": [
+    {
+     "id": "split",
+     "name": "Split – text left, image right"
+    },
+    {
+     "id": "centered",
+     "name": "Centered – headline and CTAs"
+    },
+    {
+     "id": "background",
+     "name": "Full background image"
+    }
+   ]
+  },
+  {
+   "id": "about",
+   "name": "About",
+   "layouts": [
+    {
+     "id": "image-left",
+     "name": "Image left, text + stats right"
+    },
+    {
+     "id": "image-right",
+     "name": "Image right, text + stats left"
+    }
+   ]
+  },
+  {
+   "id": "features",
+   "name": "Features",
+   "layouts": [
+    {
+     "id": "grid",
+     "name": "Grid of header pointers"
+    },
+    {
+     "id": "pointers-image",
+     "name": "Header pointers beside an image"
+    },
+    {
+     "id": "carousel",
+     "name": "Carousel"
+    }
+   ]
+  },
+  {
+   "id": "gallery",
+   "name": "Gallery",
+   "layouts": [
+    {
+     "id": "grid",
+     "name": "Image grid"
+    },
+    {
+     "id": "carousel",
+     "name": "Image carousel"
+    }
+   ]
+  },
+  {
+   "id": "testimonials",
+   "name": "Testimonials",
+   "layouts": [
+    {
+     "id": "cards",
+     "name": "Cards"
+    },
+    {
+     "id": "carousel",
+     "name": "Carousel"
+    }
+   ]
+  },
+  {
+   "id": "faq",
+   "name": "FAQ",
+   "layouts": [
+    {
+     "id": "accordion",
+     "name": "Accordion"
+    },
+    {
+     "id": "two-column",
+     "name": "Two columns"
+    }
+   ]
+  },
+  {
+   "id": "products",
+   "name": "Products",
+   "layouts": [
+    {
+     "id": "grid",
+     "name": "Product card grid"
+    },
+    {
+     "id": "carousel",
+     "name": "Product carousel"
+    }
+   ]
+  },
+  {
+   "id": "process",
+   "name": "Process / How we work",
+   "layouts": [
+    {
+     "id": "steps",
+     "name": "Numbered steps in a row"
+    },
+    {
+     "id": "timeline",
+     "name": "Vertical timeline"
+    }
+   ]
+  },
+  {
+   "id": "industries",
+   "name": "Industries served",
+   "layouts": [
+    {
+     "id": "chips",
+     "name": "Icon chips"
+    },
+    {
+     "id": "cards",
+     "name": "Cards"
+    }
+   ]
+  },
+  {
+   "id": "quote",
+   "name": "Instant quote (WhatsApp)",
+   "layouts": [
+    {
+     "id": "whatsapp",
+     "name": "Style, size, board, quantity → WhatsApp"
+    }
+   ]
+  },
+  {
+   "id": "contact",
+   "name": "Contact",
+   "layouts": [
+    {
+     "id": "simple",
+     "name": "Simple – info + form"
+    },
+    {
+     "id": "split",
+     "name": "Split – image + form"
+    }
+   ]
+  }
+ ],
+ "fonts": [
+  {
+   "id": "inter",
+   "name": "Inter",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "poppins",
+   "name": "Poppins",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "dm-sans",
+   "name": "DM Sans",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "montserrat",
+   "name": "Montserrat",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "manrope",
+   "name": "Manrope",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "space-grotesk",
+   "name": "Space Grotesk",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "playfair-display",
+   "name": "Playfair Display",
+   "fallback": "serif"
+  },
+  {
+   "id": "lora",
+   "name": "Lora",
+   "fallback": "serif"
+  }
+ ]
+}

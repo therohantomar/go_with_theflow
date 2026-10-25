@@ -1,0 +1,26 @@
+---
+import Img from "../Img.astro";
+import Carousel from "../Carousel.astro";
+const { data, layout = "grid" } = Astro.props;
+---
+<section id="gallery" class="bg-tertiary px-6 py-20">
+  <div class="mx-auto max-w-6xl">
+    <h2 data-reveal class="mb-10 text-3xl font-bold md:text-4xl">{data.title}</h2>
+    {layout === "grid" && (
+      <div data-reveal class="grid grid-cols-2 gap-4 md:grid-cols-3">
+        {data.items.map((g) => (
+          <figure><Img section="gallery" file={g.image} alt={g.caption} class="aspect-square w-full rounded-xl" /><figcaption class="mt-2 text-sm text-neutral-600">{g.caption}</figcaption></figure>
+        ))}
+      </div>
+    )}
+    {layout === "carousel" && (
+      <div data-reveal>
+        <Carousel>
+          {data.items.map((g) => (
+            <figure class="w-full shrink-0 snap-start md:w-[calc(33.333%-16px)]"><Img section="gallery" file={g.image} alt={g.caption} class="aspect-[4/3] w-full rounded-xl" /><figcaption class="mt-2 text-sm text-neutral-600">{g.caption}</figcaption></figure>
+          ))}
+        </Carousel>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+const { data } = Astro.props;
+---
+<section id="quote" class="bg-primary px-6 py-20 text-white">
+  <div data-reveal data-quote data-whatsapp={data.whatsapp} class="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
+    <div>
+      <h2 class="text-3xl font-bold !text-white md:text-4xl">{data.title}</h2>
+      <p class="mt-4 text-white/80">{data.text}</p>
+    </div>
+    <div class="space-y-4 rounded-2xl bg-white p-6 text-neutral-800">
+      <label class="block text-sm font-semibold">Style
+        <select name="style" class="mt-1 w-full rounded-lg border border-primary/20 px-3 py-2">{data.styles.map((s) => <option>{s}</option>)}</select>
+      </label>
+      <div class="grid grid-cols-3 gap-3">
+        <input name="l" type="number" min="1" placeholder="L (cm)" class="rounded-lg border border-primary/20 px-3 py-2" />
+        <input name="w" type="number" min="1" placeholder="W (cm)" class="rounded-lg border border-primary/20 px-3 py-2" />
+        <input name="h" type="number" min="1" placeholder="H (cm)" class="rounded-lg border border-primary/20 px-3 py-2" />
+      </div>
+      <label class="block text-sm font-semibold">Board
+        <select name="board" class="mt-1 w-full rounded-lg border border-primary/20 px-3 py-2">{data.boards.map((b) => <option>{b}</option>)}</select>
+      </label>
+      <label class="block text-sm font-semibold">Quantity: <span data-qty-out>{data.minQty.toLocaleString()}</span>
+        <input name="qty" type="range" min={data.minQty} max={data.maxQty} step={data.step} value={data.minQty} class="mt-1 w-full accent-[var(--color-secondary)]" />
+      </label>
+      <textarea name="note" rows="3" placeholder="Your requirement" class="w-full rounded-lg border border-primary/20 px-3 py-2"></textarea>
+      <button data-send type="button" class="w-full rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white hover:opacity-90">Get my quote on WhatsApp →</button>
+    </div>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>("[data-quote]").forEach((root) => {
+    const val = (n: string) => (root.querySelector(`[name=${n}]`) as HTMLInputElement).value;
+    const out = root.querySelector("[data-qty-out]")!;
+    root.querySelector("[name=qty]")!.addEventListener("input", () => (out.textContent = Number(val("qty")).toLocaleString()));
+    root.querySelector("[data-send]")!.addEventListener("click", () => {
+      const msg = `Quote request\nStyle: ${val("style")}\nSize: ${val("l") || "?"} x ${val("w") || "?"} x ${val("h") || "?"} cm\nBoard: ${val("board")}\nQuantity: ${val("qty")}\nNote: ${val("note")}`;
+      window.open(`https://wa.me/${root.dataset.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+    });
+  });
+</script>
