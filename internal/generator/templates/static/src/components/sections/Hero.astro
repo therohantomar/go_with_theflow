@@ -13,7 +13,7 @@ const { data, layout = "split" } = Astro.props;
         <p data-hero-item class="mt-6 text-lg text-muted">{data.subheadline}</p>
         <div data-hero-item class="mt-8 flex flex-wrap gap-3">{site.ctas.map((c) => <Button {...c} />)}</div>
       </div>
-      <Img section="hero" file={data.image} class="aspect-[4/3] w-full rounded-card" />
+      <Img eager section="hero" file={data.image} class="aspect-[4/3] w-full rounded-card" />
     </div>
   )}
   {layout === "centered" && (
@@ -26,7 +26,7 @@ const { data, layout = "split" } = Astro.props;
   )}
   {layout === "background" && (
     <div class="relative flex min-h-[80vh] items-center">
-      <Img section="hero" file={data.image} class="absolute inset-0 h-full w-full" />
+      <Img eager sizes="100vw" section="hero" file={data.image} class="absolute inset-0 h-full w-full" />
       <div class="absolute inset-0 bg-black/60"></div>
       <div class="relative mx-auto max-w-3xl px-6 text-center text-white">
         <h1 data-hero-item class="text-4xl font-bold leading-tight !text-white md:text-6xl">{data.headline}</h1>
@@ -44,12 +44,12 @@ const { data, layout = "split" } = Astro.props;
         <p data-hero-item class="max-w-xl text-lg text-muted">{data.subheadline}</p>
         <div data-hero-item class="flex flex-wrap gap-3">{site.ctas.map((c) => <Button {...c} />)}</div>
       </div>
-      <Img section="hero" file={data.image} class="mt-14 aspect-[21/9] w-full rounded-card" />
+      <Img eager section="hero" file={data.image} class="mt-14 aspect-[21/9] w-full rounded-card" />
     </div>
   )}
   {layout === "editorial" && (
     <div class="grid min-h-[88vh] md:grid-cols-[3fr_2fr]">
-      <Img section="hero" file={data.image} class="h-full min-h-[60vh] w-full" />
+      <Img eager section="hero" file={data.image} class="h-full min-h-[60vh] w-full" />
       <div class="flex flex-col justify-end gap-6 p-8 md:p-14">
         <p data-hero-item class="text-[11px] uppercase tracking-[0.3em] text-muted">{data.eyebrow}</p>
         <h1 data-hero-item>{data.headline}</h1>
@@ -73,7 +73,7 @@ const { data, layout = "split" } = Astro.props;
             ))}
           </div>
         </div>
-        <Img section="hero" file={data.image} class="aspect-[4/3] w-full rounded-card" />
+        <Img eager section="hero" file={data.image} class="aspect-[4/3] w-full rounded-card" />
       </div>
       <ul class="mx-auto grid max-w-7xl border-t border-on-primary/20 md:grid-cols-3">
         {data.points.map((p) => <li class="px-6 py-5 text-sm font-semibold uppercase tracking-wider text-on-primary/90"><span class="mr-2 text-secondary">■</span>{p}</li>)}

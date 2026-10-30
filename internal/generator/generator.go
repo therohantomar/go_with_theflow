@@ -72,6 +72,11 @@ func Generate(c *model.Config, parent string) (string, error) {
 		}
 	}
 
+	// animation script (empty module when animations are off)
+	if err := write(filepath.Join(out, "src/scripts/animations.ts"), []byte(animationScript(c.Animation))); err != nil {
+		return "", err
+	}
+
 	// 3. section-wise content JSON + site.json
 	selected := map[string]bool{}
 	for _, s := range c.Sections {
@@ -152,10 +157,11 @@ const packageJSON = `{
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",
-    "animejs": "^4.0.0",
     "astro": "^5.0.0",
-    "motion": "^12.0.0",
-    "tailwindcss": "^4.0.0"{{range .FontIDs}},
+    "sharp": "^0.33.0",
+    "tailwindcss": "^4.0.0"{{if ne .Animation "none"}},
+    "motion": "^12.0.0"{{end}}{{if eq .Animation "expressive"}},
+    "animejs": "^4.0.0"{{end}}{{range .FontIDs}},
     "@fontsource/{{.}}": "^5.0.0"{{end}}
   }
 }
@@ -209,9 +215,13 @@ input, select, textarea { background: var(--color-surface); color: var(--color-i
 .marquee { animation: marquee 30s linear infinite; }
 @keyframes marquee { to { transform: translateX(-33.333%); } }
 
-/* revealed by motion / anime.js on load or scroll */
+{{if ne .Animation "none"}}/* hidden until the animation script reveals them */
 [data-reveal], [data-hero-item] { opacity: 0; }
-`
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], [data-hero-item] { opacity: 1 !important; transform: none !important; }
+  .marquee { animation: none; }
+}
+{{end}}`
 
 const indexAstro = `---
 import Layout from "../layouts/Layout.astro";

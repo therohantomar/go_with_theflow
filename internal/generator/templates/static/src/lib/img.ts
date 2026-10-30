@@ -1,11 +1,10 @@
-// Resolves "src/assets/<section>/<file>" to a URL. Returns null when the file is blank or missing.
-const files = import.meta.glob("/src/assets/**/*.{jpg,jpeg,png,webp,avif,svg}", {
-  eager: true,
-  query: "?url",
-  import: "default",
-}) as Record<string, string>;
+// All photos live in src/assets/<section>/ (not public/) so Astro can optimise them with sharp.
+import type { ImageMetadata } from "astro";
 
-export function img(section: string, file?: string): string | null {
+const files = import.meta.glob<{ default: ImageMetadata }>("/src/assets/**/*.{jpg,jpeg,png,webp,avif,svg}", { eager: true });
+
+/** Returns the image metadata for src/assets/<section>/<file>, or null when blank or missing. */
+export function img(section: string, file?: string): ImageMetadata | null {
   if (!file) return null;
-  return files[`/src/assets/${section}/${file}`] ?? null;
+  return files[`/src/assets/${section}/${file}`]?.default ?? null;
 }

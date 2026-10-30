@@ -1,0 +1,15 @@
+---
+const { data, layout = "inline" } = Astro.props;
+---
+<section id="newsletter" class="px-6">
+  <div data-reveal class={layout === "card" ? "mx-auto max-w-3xl rounded-card bg-tertiary p-8 text-center md:p-12" : "mx-auto grid max-w-6xl items-center gap-6 md:grid-cols-2"}>
+    <div>
+      <h2 class="text-2xl font-bold md:text-3xl">{data.title}</h2>
+      <p class="mt-2 text-muted">{data.text}</p>
+    </div>
+    <form class={`flex flex-col gap-3 sm:flex-row ${layout === "card" ? "mt-6 justify-center" : ""}`} onsubmit="return false">
+      <input type="email" required placeholder={data.placeholder} class="w-full rounded-field border border-primary/20 px-4 py-3 sm:max-w-sm" />
+      <button class="rounded-btn bg-primary px-6 py-3 text-sm font-semibold text-on-primary">{data.button}</button>
+    </form>
+  </div>
+</section>

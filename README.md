@@ -10,11 +10,20 @@ A Go CLI that asks a few questions and generates a complete **Astro** landing pa
 2. Project name
 3. Industry and sub-industry (Packaging & Boxes, Food Packaging, Fashion & Apparel, Creative Studio, Real Estate, Pharmaceutical, SaaS, Fintech, Healthcare, Agency, E-commerce, Education)
 4. Template style, with the best fit for the industry first (see below)
-5. Sections: marquee strip, hero, about, features, gallery, testimonials, FAQ, products, process, industries served, instant quote (WhatsApp), contact
+5. Sections: hero, marquee strip, trusted-by logos, about, stats counters, features, products, process, video, gallery, industries served, pricing, testimonials, team, blog, FAQ, instant quote (WhatsApp), CTA banner, newsletter, contact
 6. A layout for each chosen section (carousel, grid, header pointers with image, and more)
 7. Colors: primary, secondary, tertiary
-8. Fonts: heading font and paragraph font
+8. Fonts: heading font and paragraph font (Inter, Plus Jakarta Sans, Urbanist, Outfit, Sora, Poppins, DM Sans, Montserrat, Manrope, Space Grotesk, Figtree, Lexend, Bricolage Grotesque, Red Hat Display, Rubik, Nunito, Open Sans, Oswald, Jost, Archivo, Syne, Playfair Display, Lora, Fraunces, Cormorant Garamond)
 9. Number of CTAs and their labels
+10. Animation level: none, subtle (motion) or expressive (anime.js + motion). The animation libraries are only installed if you choose them
+
+## Images
+
+Photos go in `src/assets/<section>/` (never `public/`). Astro optimises them with **sharp** at build time: AVIF and WebP, several sizes, lazy loading (hero images load eagerly). Add a file, then set its name in the section JSON, for example `"image": "hero-1.jpg"`.
+
+## Animation
+
+The wizard asks how much animation you want. Choosing none leaves out the libraries and the animation script. Reveals respect `prefers-reduced-motion`.
 
 ## Template styles
 

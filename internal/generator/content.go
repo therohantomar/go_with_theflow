@@ -44,6 +44,19 @@ func contentFor(c *model.Config) map[string]any {
 		return r
 	}
 	m := map[string]any{
+		"logos": kv{"title": "Trusted by", "items": items(6, func(i int) kv { return kv{"name": fmt.Sprintf("Partner %d", i), "image": ""} })},
+		"stats": kv{"items": []kv{{"value": "500+", "label": "Happy clients"}, {"value": "12", "label": "Years of experience"}, {"value": "98%", "label": "Satisfaction rate"}, {"value": "24/7", "label": "Support"}}},
+		"video": kv{"title": "See it in action", "text": "A short look at how " + c.Name + " works.", "url": "", "image": ""},
+		"pricing": kv{"title": "Simple, clear pricing", "subtitle": "Pick the plan that fits.", "items": []kv{
+			{"name": "Starter", "price": "$29", "period": "/month", "features": []string{"Feature one", "Feature two", "Email support"}, "cta": "Choose Starter", "highlighted": false},
+			{"name": "Growth", "price": "$79", "period": "/month", "features": []string{"Everything in Starter", "Feature three", "Priority support"}, "cta": "Choose Growth", "highlighted": true},
+			{"name": "Scale", "price": "Custom", "period": "", "features": []string{"Everything in Growth", "Dedicated manager", "Custom terms"}, "cta": "Talk to us", "highlighted": false}}},
+		"team": kv{"title": "Meet the team", "items": items(4, func(i int) kv { return kv{"name": fmt.Sprintf("Team member %d", i), "role": "Role", "image": ""} })},
+		"blog": kv{"title": "Latest from " + c.Name, "items": items(3, func(i int) kv {
+			return kv{"tag": "News", "date": "01 Jan 2026", "title": fmt.Sprintf("Article title %d", i), "excerpt": "A one-line summary of the article.", "image": ""}
+		})},
+		"cta": kv{"title": "Ready to get started?", "text": "Talk to " + c.Name + " today."},
+		"newsletter": kv{"title": "Stay in the loop", "text": "News, offers and updates. No spam.", "placeholder": "Your email", "button": "Subscribe"},
 		"marquee": kv{"items": []string{"Quality", "Design", "Craft", "Delivery"}},
 		"products": kv{"title": "Our products", "subtitle": "The right format for every need.",
 			"items": items(3, func(i int) kv { return kv{"tag": "Category", "title": fmt.Sprintf("Product %d", i), "text": "Short product description.", "image": ""} })},
@@ -114,6 +127,10 @@ func packagingOverrides(c *model.Config, m map[string]any) {
 		"text": "Pick a style, enter dimensions and quantity, and send your requirement straight to our team on WhatsApp.",
 		"whatsapp": "919999999999", "styles": []string{"RSC", "Die-cut", "Tray", "Mailer", "Gift box"},
 		"boards": []string{"3-ply", "5-ply", "7-ply", "Duplex"}, "minQty": 100, "maxQty": 10000, "step": 100}
+	m["pricing"] = kv{"title": "Order options", "subtitle": "Prices depend on size, board and quantity.", "items": []kv{
+		{"name": "Sample order", "price": "On request", "period": "", "features": []string{"Test your design", "Small quantity", "Fast turnaround"}, "cta": "Request a sample", "highlighted": false},
+		{"name": "Standard order", "price": "Custom", "period": "", "features": []string{"Your size and board", "Printed or plain", "Scheduled delivery"}, "cta": "Get a quote", "highlighted": true},
+		{"name": "Bulk contract", "price": "Custom", "period": "", "features": []string{"Best rates", "Repeat orders", "Dedicated contact"}, "cta": "Talk to us", "highlighted": false}}}
 	m["contact"] = kv{"title": "Ready to pack your next big idea?", "text": "Tell us your product, size and quantity and we will reply with the right packaging solution.",
 		"email": "hello@example.com", "phone": "+00 000 000 000", "address": "Unit address", "image": ""}
 }

@@ -12,22 +12,7 @@ const { title } = Astro.props;
   <body>
     <slot />
     <script>
-      import { animate, inView } from "motion";
-      import { animate as anime, stagger } from "animejs";
-
-      // hero entrance: anime.js
-      anime("[data-hero-item]", {
-        opacity: [0, 1],
-        translateY: [24, 0],
-        delay: stagger(120),
-        duration: 800,
-        ease: "outQuad",
-      });
-
-      // scroll reveal: motion
-      inView("[data-reveal]", (el) => {
-        animate(el, { opacity: [0, 1], y: [24, 0] }, { duration: 0.7 });
-      });
+      import "../scripts/animations";
     </script>
   </body>
 </html>

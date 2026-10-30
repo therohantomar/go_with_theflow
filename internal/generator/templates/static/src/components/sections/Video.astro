@@ -1,0 +1,19 @@
+---
+import Img from "../Img.astro";
+const { data, layout = "poster" } = Astro.props;
+const href = data.url || "#";
+---
+<section id="video" class="px-6">
+  <div data-reveal class={`mx-auto max-w-6xl ${layout === "split" ? "grid items-center gap-10 md:grid-cols-2" : ""}`}>
+    <div class={layout === "poster" ? "mb-8 text-center" : ""}>
+      <h2 class="text-3xl font-bold md:text-4xl">{data.title}</h2>
+      <p class={`mt-3 text-muted ${layout === "poster" ? "mx-auto max-w-2xl" : ""}`}>{data.text}</p>
+    </div>
+    <figure class="relative">
+      <Img section="video" file={data.image} class="aspect-video w-full rounded-card" />
+      <a href={href} target="_blank" rel="noopener" aria-label="Play video" class="absolute inset-0 flex items-center justify-center">
+        <span class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary pl-1 text-xl text-on-secondary shadow-lg transition hover:scale-110 md:h-20 md:w-20">▶</span>
+      </a>
+    </figure>
+  </div>
+</section>

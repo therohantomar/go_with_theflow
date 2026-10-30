@@ -1,0 +1,14 @@
+---
+const { data, layout = "bar" } = Astro.props;
+const bar = layout === "bar";
+---
+<section id="stats" class={bar ? "bg-primary text-on-primary" : ""}>
+  <div data-reveal class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-6 md:grid-cols-4 md:gap-8">
+    {data.items.map((s) => (
+      <div class={bar ? "text-center" : "rounded-card border border-primary/10 bg-tertiary p-6"}>
+        <p data-count={s.value} class={`font-heading text-4xl font-bold md:text-5xl ${bar ? "text-secondary" : "text-primary"}`}>{s.value}</p>
+        <p class={`mt-2 text-sm ${bar ? "text-on-primary/80" : "text-muted"}`}>{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>

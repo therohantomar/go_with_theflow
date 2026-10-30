@@ -1,8 +1,9 @@
 ---
+import { Picture } from "astro:assets";
 import { img } from "../lib/img";
-const { section, file, alt = "", class: cls = "" } = Astro.props;
+const { section, file, alt = "", class: cls = "", sizes = "(min-width: 1024px) 50vw, 100vw", eager = false } = Astro.props;
 const src = img(section, file);
 ---
 {src
-  ? <img src={src} alt={alt} loading="lazy" class={`object-cover ${cls}`} />
+  ? <Picture src={src} alt={alt} formats={["avif", "webp"]} widths={[480, 768, 1200, 1800]} sizes={sizes} loading={eager ? "eager" : "lazy"} class={`object-cover ${cls}`} />
   : <div class={`border-2 border-dashed border-primary/20 bg-tertiary ${cls}`} role="img" aria-label="Image placeholder"></div>}

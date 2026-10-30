@@ -284,6 +284,20 @@
    ]
   },
   {
+   "id": "logos",
+   "name": "Trusted by / Clients",
+   "layouts": [
+    {
+     "id": "grid",
+     "name": "Logo grid"
+    },
+    {
+     "id": "marquee",
+     "name": "Scrolling logos"
+    }
+   ]
+  },
+  {
    "id": "about",
    "name": "About",
    "layouts": [
@@ -294,6 +308,20 @@
     {
      "id": "image-right",
      "name": "Image right, text + stats left"
+    }
+   ]
+  },
+  {
+   "id": "stats",
+   "name": "Stats / Numbers",
+   "layouts": [
+    {
+     "id": "bar",
+     "name": "Solid color bar"
+    },
+    {
+     "id": "cards",
+     "name": "Cards"
     }
    ]
   },
@@ -312,48 +340,6 @@
     {
      "id": "carousel",
      "name": "Carousel"
-    }
-   ]
-  },
-  {
-   "id": "gallery",
-   "name": "Gallery",
-   "layouts": [
-    {
-     "id": "grid",
-     "name": "Image grid"
-    },
-    {
-     "id": "carousel",
-     "name": "Image carousel"
-    }
-   ]
-  },
-  {
-   "id": "testimonials",
-   "name": "Testimonials",
-   "layouts": [
-    {
-     "id": "cards",
-     "name": "Cards"
-    },
-    {
-     "id": "carousel",
-     "name": "Carousel"
-    }
-   ]
-  },
-  {
-   "id": "faq",
-   "name": "FAQ",
-   "layouts": [
-    {
-     "id": "accordion",
-     "name": "Accordion"
-    },
-    {
-     "id": "two-column",
-     "name": "Two columns"
     }
    ]
   },
@@ -386,6 +372,34 @@
    ]
   },
   {
+   "id": "video",
+   "name": "Video / Showreel",
+   "layouts": [
+    {
+     "id": "poster",
+     "name": "Centered poster"
+    },
+    {
+     "id": "split",
+     "name": "Text + poster"
+    }
+   ]
+  },
+  {
+   "id": "gallery",
+   "name": "Gallery",
+   "layouts": [
+    {
+     "id": "grid",
+     "name": "Image grid"
+    },
+    {
+     "id": "carousel",
+     "name": "Image carousel"
+    }
+   ]
+  },
+  {
    "id": "industries",
    "name": "Industries served",
    "layouts": [
@@ -400,12 +414,110 @@
    ]
   },
   {
+   "id": "pricing",
+   "name": "Pricing / Plans",
+   "layouts": [
+    {
+     "id": "cards",
+     "name": "Tier cards"
+    },
+    {
+     "id": "list",
+     "name": "Rows"
+    }
+   ]
+  },
+  {
+   "id": "testimonials",
+   "name": "Testimonials",
+   "layouts": [
+    {
+     "id": "cards",
+     "name": "Cards"
+    },
+    {
+     "id": "carousel",
+     "name": "Carousel"
+    }
+   ]
+  },
+  {
+   "id": "team",
+   "name": "Team",
+   "layouts": [
+    {
+     "id": "grid",
+     "name": "Photo grid"
+    },
+    {
+     "id": "carousel",
+     "name": "Carousel"
+    }
+   ]
+  },
+  {
+   "id": "blog",
+   "name": "Blog / News",
+   "layouts": [
+    {
+     "id": "cards",
+     "name": "Cards"
+    },
+    {
+     "id": "list",
+     "name": "List"
+    }
+   ]
+  },
+  {
+   "id": "faq",
+   "name": "FAQ",
+   "layouts": [
+    {
+     "id": "accordion",
+     "name": "Accordion"
+    },
+    {
+     "id": "two-column",
+     "name": "Two columns"
+    }
+   ]
+  },
+  {
    "id": "quote",
    "name": "Instant quote (WhatsApp)",
    "layouts": [
     {
      "id": "whatsapp",
      "name": "Style, size, board, quantity → WhatsApp"
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "name": "Call-to-action banner",
+   "layouts": [
+    {
+     "id": "banner",
+     "name": "Full-width band"
+    },
+    {
+     "id": "card",
+     "name": "Card"
+    }
+   ]
+  },
+  {
+   "id": "newsletter",
+   "name": "Newsletter signup",
+   "layouts": [
+    {
+     "id": "inline",
+     "name": "Inline"
+    },
+    {
+     "id": "card",
+     "name": "Card"
     }
    ]
   },
@@ -489,6 +601,66 @@
    "id": "syne",
    "name": "Syne",
    "fallback": "sans-serif"
+  },
+  {
+   "id": "plus-jakarta-sans",
+   "name": "Plus Jakarta Sans",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "urbanist",
+   "name": "Urbanist",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "outfit",
+   "name": "Outfit",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "sora",
+   "name": "Sora",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "bricolage-grotesque",
+   "name": "Bricolage Grotesque",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "figtree",
+   "name": "Figtree",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "lexend",
+   "name": "Lexend",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "red-hat-display",
+   "name": "Red Hat Display",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "rubik",
+   "name": "Rubik",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "nunito",
+   "name": "Nunito",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "open-sans",
+   "name": "Open Sans",
+   "fallback": "sans-serif"
+  },
+  {
+   "id": "fraunces",
+   "name": "Fraunces",
+   "fallback": "serif"
   }
  ],
  "styles": [
@@ -533,7 +705,8 @@
    "hero": "banner",
    "sections": [
     "products",
-    "industries"
+    "industries",
+    "stats"
    ],
    "palette": [],
    "fonts": [

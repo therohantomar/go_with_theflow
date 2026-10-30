@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import { img } from "../../lib/img";
+const { data, layout = "grid" } = Astro.props;
+const looped = [...data.items, ...data.items, ...data.items];
+const src = (l) => img("logos", l.image);
+---
+<section id="logos" class="overflow-hidden">
+  <div class="mx-auto max-w-6xl px-6">
+    <p data-reveal class="mb-8 text-center text-xs font-semibold uppercase tracking-[0.25em] text-muted">{data.title}</p>
+    {layout === "grid" && (
+      <div data-reveal class="grid grid-cols-2 items-center gap-6 sm:grid-cols-3 lg:grid-cols-6">
+        {data.items.map((l) => (
+          <div class="flex h-14 items-center justify-center">
+            {src(l) ? <Image src={src(l)} alt={l.name} height={40} class="max-h-10 w-auto opacity-70 grayscale" /> : <span class="font-heading text-lg text-muted">{l.name}</span>}
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+  {layout === "marquee" && (
+    <div class="marquee flex w-max items-center gap-16 whitespace-nowrap">
+      {looped.map((l) => (src(l) ? <Image src={src(l)} alt={l.name} height={40} class="h-10 w-auto opacity-70 grayscale" /> : <span class="font-heading text-2xl text-muted">{l.name}</span>))}
+    </div>
+  )}
+</section>

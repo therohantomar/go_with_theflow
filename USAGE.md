@@ -38,7 +38,7 @@ Edit text: `src/content/<section>.json`
 Add a photo:
 
 ```bash
-cp ~/Pictures/factory.jpg src/assets/about/
+cp ~/Pictures/factory.jpg src/assets/about/   # images live in src/assets, not public
 ```
 
 then set it in `src/content/about.json`:

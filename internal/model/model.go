@@ -30,5 +30,6 @@ type Config struct {
 		Heading Font `json:"heading"`
 		Body    Font `json:"body"`
 	} `json:"fonts"`
-	CTAs []string `json:"ctas"`
+	CTAs      []string `json:"ctas"`
+	Animation string   `json:"animation"` // none | subtle | expressive
 }

@@ -202,10 +202,23 @@ func RunWizard() (*model.Config, error) {
 		return nil, err
 	}
 
+	// animation
+	c.Animation = "subtle"
+	if c.Style == "bold" || c.Style == "creative" {
+		c.Animation = "expressive"
+	}
+	if err := huh.NewSelect[string]().Title("Add animations?").Options(
+		huh.NewOption("No animation (lightest, no animation libraries)", "none"),
+		huh.NewOption("Subtle - fade-up scroll reveals and counters (motion)", "subtle"),
+		huh.NewOption("Expressive - hero entrance, bigger reveals, counters (anime.js + motion)", "expressive"),
+	).Value(&c.Animation).Run(); err != nil {
+		return nil, err
+	}
+
 	// review
 	ok := true
 	if err := huh.NewConfirm().Title(fmt.Sprintf("Generate %s (%s / %s, %d sections, %d CTAs)?",
-		c.Name, c.IndustryName, c.SubIndustry, len(c.Sections), len(c.CTAs))).Value(&ok).Run(); err != nil {
+		c.Name, c.IndustryName, c.SubIndustry, len(c.Sections), len(c.CTAs))+" Animation: "+c.Animation).Value(&ok).Run(); err != nil {
 		return nil, err
 	}
 	if !ok {
