@@ -50,17 +50,18 @@ func Generate(c *model.Config, parent string) (string, error) {
 	// the faq section file is Faq.astro
 	data := struct {
 		*model.Config
-		Sections []sec
-		FontIDs  []string
-		T        tokens
+		Sections               []sec
+		FontIDs                []string
+		T                      tokens
 		OnPrimary, OnSecondary string
 	}{c, secs, uniqueFonts(c), tokensFor(c.Style), onColor(c.Colors.Primary), onColor(c.Colors.Secondary)}
 	// shadow embedded Config.Sections with the richer list
 	files := map[string]string{
-		"package.json":          packageJSON,
-		"src/styles/global.css": globalCSS,
-		"src/styles/fonts.css":  fontsCSS,
-		"src/pages/index.astro": indexAstro,
+		"package.json":             packageJSON,
+		"src/styles/global.css":    globalCSS,
+		"src/styles/fonts.css":     fontsCSS,
+		"src/pages/index.astro":    indexAstro,
+		"src/layouts/Layout.astro": layoutAstro,
 	}
 	for path, tpl := range files {
 		s, err := render(tpl, data)
@@ -223,6 +224,30 @@ input, select, textarea { background: var(--color-surface); color: var(--color-i
 }
 {{end}}`
 
+const layoutAstro = `---
+import "../styles/global.css";
+const { title, description = "", canonical = "" } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <script>import "../scripts/animations";</script>
+  </body>
+</html>
+`
+
 const indexAstro = `---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/layout/Header.astro";
@@ -232,7 +257,7 @@ import site from "../content/site.json";
 import {{.ID}}Data from "../content/{{.ID}}.json";
 {{end}}---
 
-<Layout title={site.name}>
+<Layout title={site.name} description={site.description} canonical={site.canonicalUrl}>
   <Header />
   <main>
 {{range .Sections}}    <{{.Component}} data={ {{.ID}}Data } layout="{{.Layout}}" />

@@ -22,9 +22,45 @@ func main() {
 			fmt.Fprintln(os.Stderr, "error:", err)
 			os.Exit(1)
 		}
+	case "ref":
+		if len(os.Args) < 3 {
+			fmt.Fprintln(os.Stderr, "usage: flow ref <website-url>")
+			os.Exit(2)
+		}
+		if err := runRef(os.Args[2]); err != nil {
+			fmt.Fprintln(os.Stderr, "error:", err)
+			os.Exit(1)
+		}
 	default:
-		fmt.Println("usage: flow new   create a new Astro landing page")
+		fmt.Println("usage: flow new | flow ref <website-url>")
 	}
+}
+
+func runRef(referenceURL string) error {
+	cfg, err := cli.RunReference(referenceURL)
+	if err != nil {
+		return err
+	}
+	ok, err := cli.ConfirmReference(cfg)
+	if err != nil {
+		return err
+	}
+	if !ok {
+		fmt.Println("Cancelled.")
+		return nil
+	}
+	cwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	out, err := generator.Generate(cfg, cwd)
+	if err != nil {
+		return err
+	}
+	fmt.Println("\n✔ Generated reference-based Astro project", out)
+	fmt.Println("  Review src/content and src/styles/global.css: page text, layout, images, and colors may need manual refinement.")
+	fmt.Printf("\nNext:\n  cd %s\n  npm install\n  npm run dev\n", cfg.Slug)
+	return nil
 }
 
 func runNew() error {

@@ -13,6 +13,8 @@ type Font struct {
 
 type Config struct {
 	Name           string    `json:"name"`
+	Description    string    `json:"description,omitempty"`
+	CanonicalURL   string    `json:"canonicalUrl,omitempty"`
 	Slug           string    `json:"slug"`
 	PackageManager string    `json:"packageManager"`
 	Industry       string    `json:"industry"`

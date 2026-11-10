@@ -29,7 +29,7 @@ func siteFor(c *model.Config) kv {
 			nav = append(nav, kv{"id": s.ID, "label": s.ID})
 		}
 	}
-	return kv{"name": c.Name, "industry": c.IndustryName, "style": c.Style, "ctas": ctas, "nav": nav}
+	return kv{"name": c.Name, "description": c.Description, "canonicalUrl": c.CanonicalURL, "industry": c.IndustryName, "style": c.Style, "ctas": ctas, "nav": nav}
 }
 
 // contentFor returns placeholder copy per section. Images are left blank ("") —
@@ -55,11 +55,13 @@ func contentFor(c *model.Config) map[string]any {
 		"blog": kv{"title": "Latest from " + c.Name, "items": items(3, func(i int) kv {
 			return kv{"tag": "News", "date": "01 Jan 2026", "title": fmt.Sprintf("Article title %d", i), "excerpt": "A one-line summary of the article.", "image": ""}
 		})},
-		"cta": kv{"title": "Ready to get started?", "text": "Talk to " + c.Name + " today."},
+		"cta":        kv{"title": "Ready to get started?", "text": "Talk to " + c.Name + " today."},
 		"newsletter": kv{"title": "Stay in the loop", "text": "News, offers and updates. No spam.", "placeholder": "Your email", "button": "Subscribe"},
-		"marquee": kv{"items": []string{"Quality", "Design", "Craft", "Delivery"}},
+		"marquee":    kv{"items": []string{"Quality", "Design", "Craft", "Delivery"}},
 		"products": kv{"title": "Our products", "subtitle": "The right format for every need.",
-			"items": items(3, func(i int) kv { return kv{"tag": "Category", "title": fmt.Sprintf("Product %d", i), "text": "Short product description.", "image": ""} })},
+			"items": items(3, func(i int) kv {
+				return kv{"tag": "Category", "title": fmt.Sprintf("Product %d", i), "text": "Short product description.", "image": ""}
+			})},
 		"process": kv{"title": "How we work",
 			"items": items(4, func(i int) kv { return kv{"title": fmt.Sprintf("Step %d", i), "text": "What happens in this step."} })},
 		"industries": kv{"title": "Industries we serve",
@@ -72,7 +74,9 @@ func contentFor(c *model.Config) map[string]any {
 		"about": kv{"title": "About " + c.Name, "text": fmt.Sprintf("Tell your %s story here.", ind), "image": "",
 			"stats": items(3, func(i int) kv { return kv{"value": fmt.Sprintf("%d00+", i), "label": fmt.Sprintf("Metric %d", i)} })},
 		"features": kv{"title": "Why choose us", "subtitle": "What sets " + c.Name + " apart.", "image": "",
-			"items": items(4, func(i int) kv { return kv{"title": fmt.Sprintf("Feature %d", i), "text": "Short description of this feature."} })},
+			"items": items(4, func(i int) kv {
+				return kv{"title": fmt.Sprintf("Feature %d", i), "text": "Short description of this feature."}
+			})},
 		"gallery": kv{"title": "Gallery",
 			"items": items(6, func(i int) kv { return kv{"caption": fmt.Sprintf("Image %d", i), "image": ""} })},
 		"testimonials": kv{"title": "What people say",
@@ -99,7 +103,7 @@ func packagingOverrides(c *model.Config, m map[string]any) {
 	m["hero"] = kv{"eyebrow": "Design · Printing · Packaging", "headline": c.Tagline,
 		"subheadline": "Corrugated boxes, printed cartons and custom packaging, made to your size, board and brand.", "image": "", "points": []string{"Custom sizes", "In-house printing", "Bulk and sample orders"}}
 	m["about"] = kv{"title": "A packaging partner you can build on", "image": "",
-		"text": "Tell your story here: when you started, who runs the business, and why packaging is more than protection for your customers.",
+		"text":  "Tell your story here: when you started, who runs the business, and why packaging is more than protection for your customers.",
 		"stats": []kv{{"value": "20+", "label": "Years in business"}, {"value": "3", "label": "Manufacturing units"}, {"value": "50k+", "label": "Boxes a month"}}}
 	m["features"] = kv{"title": "Why " + c.Name, "subtitle": "One stop for design, printing and packaging.", "image": "",
 		"items": []kv{
@@ -124,7 +128,7 @@ func packagingOverrides(c *model.Config, m map[string]any) {
 		{"icon": "🛒", "name": "E-commerce & D2C"}, {"icon": "🍎", "name": "FMCG & Food"}, {"icon": "🔌", "name": "Electricals & Electronics"},
 		{"icon": "🚗", "name": "Automotive & Engineering"}, {"icon": "👕", "name": "Textiles & Apparel"}, {"icon": "🎁", "name": "Gifting & Retail"}}}
 	m["quote"] = kv{"title": "Tell us what you need — we'll quote it",
-		"text": "Pick a style, enter dimensions and quantity, and send your requirement straight to our team on WhatsApp.",
+		"text":     "Pick a style, enter dimensions and quantity, and send your requirement straight to our team on WhatsApp.",
 		"whatsapp": "919999999999", "styles": []string{"RSC", "Die-cut", "Tray", "Mailer", "Gift box"},
 		"boards": []string{"3-ply", "5-ply", "7-ply", "Duplex"}, "minQty": 100, "maxQty": 10000, "step": 100}
 	m["pricing"] = kv{"title": "Order options", "subtitle": "Prices depend on size, board and quantity.", "items": []kv{
@@ -138,7 +142,7 @@ func packagingOverrides(c *model.Config, m map[string]any) {
 func foodPackagingOverrides(c *model.Config, m map[string]any) {
 	m["hero"] = kv{"eyebrow": "Food packaging & disposables", "headline": c.Tagline, "image": "",
 		"subheadline": "Containers, cups, tableware and bags for restaurants, cloud kitchens and food brands, in food-safe materials.",
-		"points": []string{"Food-safe materials", "Custom printing", "Bulk supply"}}
+		"points":      []string{"Food-safe materials", "Custom printing", "Bulk supply"}}
 	m["marquee"] = kv{"items": []string{"Food safe", "Leak resistant", "Recyclable options", "Custom branded"}}
 	m["products"] = kv{"title": "Packaging for every menu", "subtitle": "Product catalogue",
 		"items": []kv{
@@ -159,7 +163,7 @@ func foodPackagingOverrides(c *model.Config, m map[string]any) {
 func fashionOverrides(c *model.Config, m map[string]any) {
 	m["hero"] = kv{"eyebrow": "New season", "headline": c.Tagline, "image": "",
 		"subheadline": "The new collection is here. Designed to be worn hard and styled your way.",
-		"points": []string{"Free shipping", "Easy returns", "New drops weekly"}}
+		"points":      []string{"Free shipping", "Easy returns", "New drops weekly"}}
 	m["marquee"] = kv{"items": []string{"New season", "Free shipping", "Limited drops", "Made to move"}}
 	m["products"] = kv{"title": "Shop the collections", "subtitle": "Featured",
 		"items": []kv{
