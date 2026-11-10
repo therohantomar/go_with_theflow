@@ -2,7 +2,13 @@
 
 A Go CLI that asks a few questions and generates a complete **Astro** landing page, styled with **Tailwind CSS**, animated with **anime.js** and **motion**, and using **Fontsource** fonts. All page copy lives in section-wise JSON files, and photo slots are left blank.
 
-> Status: `flow new` works. `flow list`, `flow edit`, `flow generate` and `flow preview` are not built yet.
+> Status: `flow new` and `flow ref <url>` work. `flow list`, `flow edit`, `flow generate` and `flow preview` are not built yet.
+
+## Reference a website
+
+Run `flow ref https://example.com` to fetch a public page and seed a new Astro project from its document title, description metadata, and hex colors present in the fetched HTML (including inline styles). It uses the existing section components and includes SEO description, Open Graph, canonical URL, and indexing metadata.
+
+This is a starter, not a pixel-perfect clone: the CLI does not execute JavaScript, inspect rendered/computed styles, or copy protected text/images. Section detection is heuristic and generated copy/layouts may need editing. Review `src/content/`, `src/styles/global.css`, and the SEO metadata before publishing. The reference URL is stored as the canonical URL by default; update it to your own domain before deployment.
 
 ## What it asks
 
@@ -29,13 +35,13 @@ The wizard asks how much animation you want. Choosing none leaves out the librar
 
 Each style changes type, shape, spacing, header, hero layout, default colors and fonts, so industries no longer look alike.
 
-| Style | Look | Inspired by |
-|---|---|---|
-| Bold Sport | huge uppercase type, square corners, marquee strip, high contrast | Nike, Adidas, Myntra |
-| Editorial Minimal | airy, hairline details, centered header, tall lookbook hero | Zara, Uniqlo |
+| Style              | Look                                                                  | Inspired by                                      |
+| ------------------ | --------------------------------------------------------------------- | ------------------------------------------------ |
+| Bold Sport         | huge uppercase type, square corners, marquee strip, high contrast     | Nike, Adidas, Myntra                             |
+| Editorial Minimal  | airy, hairline details, centered header, tall lookbook hero           | Zara, Uniqlo                                     |
 | Industrial Catalog | solid color banner hero with key points, structured product catalogue | Huhtamaki, Dart, Pactiv, Genpak, Sabert, Novolex |
-| Creative Dark | dark theme, oversized type, glow accents, pill buttons | Awwwards, Godly, Land-book, Dribbble |
-| Soft Classic | rounded cards, friendly and balanced | - |
+| Creative Dark      | dark theme, oversized type, glow accents, pill buttons                | Awwwards, Godly, Land-book, Dribbble             |
+| Soft Classic       | rounded cards, friendly and balanced                                  | -                                                |
 
 These are original designs that borrow general patterns from the reference sites. Nothing is copied.
 

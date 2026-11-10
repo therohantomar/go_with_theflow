@@ -6,6 +6,8 @@
 cd go-with-the-flow
 go mod tidy
 go run ./cmd/flow new
+# Or seed a project from a public website:
+go run ./cmd/flow ref https://example.com
 ```
 
 ## 2. (Optional) Install as a command
@@ -14,6 +16,8 @@ go run ./cmd/flow new
 go build -o flow ./cmd/flow
 sudo mv flow /usr/local/bin/
 flow new
+# Or:
+flow ref https://example.com
 ```
 
 ## 3. Run the generated site
